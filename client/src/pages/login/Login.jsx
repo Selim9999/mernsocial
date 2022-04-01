@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -21,8 +21,6 @@ export const Login = () => {
     console.log(newData);
   }
 
-  let isLoggedIn = false;
-
   function login(e) {
     e.preventDefault();
     axios
@@ -35,19 +33,24 @@ export const Login = () => {
           let user = res.data;
           localStorage.setItem("loggedIn", JSON.stringify(user));
           console.log("logged In");
-          isLoggedIn = true;
+          setLoggedIn(true);
           console.log(isLoggedIn);
           navigate("/");
         }
       });
   }
 
-  const loggedIn = localStorage.getItem("loggedIn");
+  var isLoggedIn = false;
+
+  function setLoggedIn(bool) {
+    isLoggedIn = bool;
+  }
+
+  if (localStorage.getItem("loggedIn")) setLoggedIn(true);
+  else setLoggedIn(false);
 
   useEffect(() => {
-    if (loggedIn) {
-      navigate("/");
-    }
+    if (isLoggedIn) navigate("/");
   });
 
   return (

@@ -5,7 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ForumIcon from "@mui/icons-material/Forum";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export const Sidebar = () => {
   return (
     <div className="sidebar">
       <h3 className="tornado">Tornado</h3>
-      <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+      <Link to="/" style={{ textDecoration: "none", color: "black" }}>
         <div onClick={handleClick1} className="homeIcon">
           <div id="icon1">
             <HomeIcon />
